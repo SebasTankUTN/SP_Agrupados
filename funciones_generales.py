@@ -111,6 +111,13 @@ def acumulador_de_vector(vector:list):
 #recorre un vector y guarda el mayor valor que encontro y su posicion, devuelve otro vector con esos datos
 
 def encontrar_mayor_en_vector(vector:list):
+    """Recorre un vector y encuentra el valor mas alto
+    Args:
+        vector (list): Utilizada para buscar los valores del vector
+
+    Returns:
+        _list_: devuelva un vector con el valor mas alto y su posicion del vector utilizado
+    """
     mayor=crear_vector(2,0)
     for i in range(len(vector)):
         if mayor[1] < vector[i] or mayor[1] == 0:
@@ -118,7 +125,15 @@ def encontrar_mayor_en_vector(vector:list):
             mayor[0] = i
     return mayor
 
-def separar_str(cadena:str, separacion)->list:
+def separar_str(cadena:str, separacion: int)->list:
+    """recibe una cadena de texto y lo separa en dos partes utilizando codigo ascii
+    Args:
+        cadena (str): cadena de texto a analizar
+        separacion (int): utilizada en el codigo ascii que indica un nuevo string
+
+    Returns:
+        list: Devuelve las cadenas separadas en una lista.
+    """
     primer_tramo = False
     for i in range (len(cadena)):
         
@@ -141,13 +156,23 @@ def separar_str(cadena:str, separacion)->list:
     return lista
 
 def mostrar_set(mi_set):
+    """Muestra los valores de una coleccion
 
+    Args:
+        mi_set (_type_): utilizada para mostrar los valores
+    """
     for valor in mi_set:
         print(f"{valor}")
 
 
 def desordenar_vector(vector:list) -> list:
+    """recorrer un vector y utiliza el modulo random para intercambiar los valores de forma aleatoria con los elemento desordenados.
+    Args:
+        vector (list): Vector cuyos elemento estaran desordenados.
 
+    Returns:
+        list: _devuelve una nueva lista desordenada con elemento ubicados en un orden aleatoria
+    """
     for i in range(len(vector)):
 
             posicion_aleatoria = random.randint(0,len(vector)-1)
@@ -157,7 +182,16 @@ def desordenar_vector(vector:list) -> list:
     return vector
 
 def comprobar_elementos_en_lista(lista:list, elemento:any):
-    
+    """Comprueba si el elemento se encuentra en la lista
+
+    Args:
+        lista (list): vector a recorrer
+        elemento (any): valor a encontrar
+
+    Returns:
+        _bool_: devuelve True si lo encontro.
+                devuelve False no lo encontro.
+    """
     bandera = False
     if elemento in lista:
 
@@ -166,6 +200,15 @@ def comprobar_elementos_en_lista(lista:list, elemento:any):
     return bandera
 
 def perder_vida(vidas: int, mostrar = True):
+    """descuenta el valor de vidas a -1 y muestrar la cantidad de vidas que tiene.
+
+    Args:
+        vidas (int): numero entero utilizado para el descuento
+        mostrar (bool, optional):   Si es True muestra la cantidad de vida que tendra. Defaults to True.
+                                    Si es False no muestrar ningun dato.
+    Returns:
+        _int_: Devuelve la cantidad de vida que tendra.
+    """
     vidas -=1
 
     if mostrar ==True:
@@ -174,7 +217,15 @@ def perder_vida(vidas: int, mostrar = True):
     return vidas
 
 def reinicio_nivel(reinicio: int, vidas :int):
+    """descuenta el valor de reinicios y si se descuenta actualizar el valor de vidas a 3.
 
+    Args:
+        reinicio (int): valor a descontar
+        vidas (int): Valor a actualizar
+
+    Returns:
+        _int_: devuelve dos valores enteros cumpliendo con sus condiciones establecidas.
+    """
     reinicio -=1
     
     if reinicio == 0:
@@ -188,6 +239,14 @@ def reinicio_nivel(reinicio: int, vidas :int):
     return reinicio, vidas
 
 def verificar_vidas(vida: int):
+    """Verificar el estado del valor vidas.
+
+    Args:
+        vidas (int): numero entero a analizar
+
+    Returns:
+        _bool_: devuelve un booleano si el valor se encuentra en las condiciones establecidas
+    """
     estado = False
     
     if vida > 0:
@@ -196,6 +255,14 @@ def verificar_vidas(vida: int):
     return estado
 
 def verificar_reinicio(reinicio: int):
+    """Verificar el estado del valor reinicio.
+
+    Args:
+        reinicio (int): numero entero a analizar
+
+    Returns:
+        _bool_: devuelve un booleano si el valor se encuentra en las condiciones establecidas
+    """
     estado = False
     
     if reinicio > 0:
@@ -204,7 +271,11 @@ def verificar_reinicio(reinicio: int):
     return estado 
 
 def mostrar_vidas(vidas:int):
-    
+    """Muestrar los valores de un valor
+
+    Args:
+        vidas (int): Valor a mostrar
+    """
     if vidas >=1:
         print(f"Perdiste una vida, te quedan {vidas} vidas")
     else:
