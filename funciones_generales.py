@@ -164,3 +164,48 @@ def comprobar_elementos_en_lista(lista:list, elemento:any):
         bandera = True
 
     return bandera
+
+def perder_vida(vidas: int, mostrar = True):
+    vidas -=1
+
+    if mostrar ==True:
+        mostrar_vidas(vidas)
+    
+    return vidas
+
+def reinicio_nivel(reinicio: int, vidas :int):
+
+    reinicio -=1
+    
+    if reinicio == 0:
+        print("No te quedan reinicios")
+    else:
+        print(f'Reiniciando Nivel, Te quedan {reinicio} reinicios')
+        vidas = 3
+        print(f"Nivel Restaurado, Vidas Restantes {vidas}")
+        
+
+    return reinicio, vidas
+
+def verificar_vidas(vida: int):
+    estado = False
+    
+    if vida > 0:
+        estado = True
+
+    return estado
+
+def verificar_reinicio(reinicio: int):
+    estado = False
+    
+    if reinicio > 0:
+        estado = True
+
+    return estado 
+
+def mostrar_vidas(vidas:int):
+    
+    if vidas >=1:
+        print(f"Perdiste una vida, te quedan {vidas} vidas")
+    else:
+        print(f'Te quedas sin vidas. Reinicio Nivel')

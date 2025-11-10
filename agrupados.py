@@ -91,6 +91,3 @@ def comprobar_stage(matriz_elementos:list, lista_jugados:list) -> bool:
         if comprobar_grupo(linea, lista_jugados)!=True:
             bandera = False
     return bandera
-    
-
-
