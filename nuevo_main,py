@@ -13,14 +13,16 @@ estado_reinicio = False
 salir=True
 while salir:
 
-    print(f"Nivel {nivel}")
     matriz_a_jugar = separar_grupos(elementos, elementos_jugados)
 
     matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
     
-    while comprobar_stage(matriz_a_jugar,elementos) != True:
+    while comprobar_stage(matriz_a_jugar,elementos_jugados) != True:
+        
         if estado_reinicio == True:
               break
+        
+        print(f"Nivel {nivel}")
         print()
         mostrar_matriz(matriz_a_jugar)
 
@@ -32,21 +34,24 @@ while salir:
         vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
             
         while comprobar_grupo(vector_eleccion , elementos) == False:
+
             vidas = perder_vida(vidas)
-            
             if vidas == 0:
                 reinicios, vidas = reinicio_nivel(reinicios,vidas)
                 if vidas == 3 and reinicios > 0:
-                    matriz_a_jugar = separar_grupos(elementos, elementos_jugados)
+                    vector_auxiliar = []
+                    matriz_a_jugar = separar_grupos(elementos_jugados,vector_auxiliar)
                     matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
-                    break
 
             if verificar_reinicio(reinicios) !=True:
-                estado_reinicio = True
-                break
 
+                estado_reinicio = True
+                
+                break
+            print(f"Nivel {nivel}")
             print()
             mostrar_matriz(matriz_a_jugar)
+
             eleccion1 = input("Ingrese su reeleccion: ")
             eleccion2 = input("Ingrese su reeleccion: ")
             eleccion3 = input("Ingrese su reeleccion: ")
@@ -54,7 +59,7 @@ while salir:
             
             vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
                 
-            matriz_a_jugar = ordenar_grupo_en_linea(matriz_a_jugar, vector_eleccion, elementos)
+        matriz_a_jugar = ordenar_grupo_en_linea(matriz_a_jugar, vector_eleccion, elementos)
     
     if estado_reinicio == True:
            print("\nHas Perdido.")
