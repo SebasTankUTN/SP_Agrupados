@@ -146,3 +146,62 @@ def comprobar_stage(matriz_elementos:list, lista_jugados:list) -> bool:
             bandera = False
     
     return bandera
+
+def validacion_stage(elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vidas, estado_gamer_over):
+
+    while comprobar_stage(matriz_a_jugar,elementos) != True:
+        
+        if estado_gamer_over == True:
+              break
+        
+        print(f"Nivel {nivel}")
+        print()
+        mostrar_matriz(matriz_a_jugar)
+        
+        vector_eleccion = tomar_valores(4)
+        bandera_validacion = True
+
+        elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vidas, estado_gamer_over, bandera_validacion, vector_eleccion = validacion_linea(elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vidas, estado_gamer_over, bandera_validacion, vector_eleccion)
+
+
+        matriz_a_jugar = ordenar_grupo_en_linea(matriz_a_jugar, vector_eleccion, elementos)
+        
+        puntuacion_ganado = sumar_puntuacion(nivel,vidas,reinicios)
+        print(f'Puntuacion Ganada: {puntuacion_ganado}')
+        puntuacion += puntuacion_ganado
+
+    return puntuacion_ganado,puntuacion,estado_gamer_over
+
+def validacion_linea(elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vidas, estado_gamer_over, bandera_validacion, vector_eleccion):
+    while bandera_validacion == True:
+            if comprobar_grupo(vector_eleccion, elementos) == True:
+                bandera_validacion = False
+
+            if bandera_validacion == True:
+                 
+                puntuacion_perdida = perder_puntuacion(puntuacion,nivel,reinicios,vidas)
+                print(f'Puntuacion Perdida: {puntuacion_perdida}')
+                puntuacion-= puntuacion_perdida
+                print(f'Puntuacion Actual: {puntuacion}')
+                
+                vidas = perder_vida(vidas)
+                if vidas == 0:
+                    reinicios, vidas = reinicio_nivel(reinicios,vidas)
+                    if vidas == 3 and reinicios > 0:
+                        vector_auxiliar = []
+                        matriz_a_jugar = separar_grupos(elementos,vector_auxiliar)
+                        matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
+
+                if verificar_reinicio(reinicios) !=True:
+
+                    estado_gamer_over = True
+                    
+                    break
+                
+                print(f"Nivel {nivel}")
+                print()
+                mostrar_matriz(matriz_a_jugar)
+
+                vector_eleccion = tomar_valores(4)
+    
+    return elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vidas, estado_gamer_over, bandera_validacion, vector_eleccion
