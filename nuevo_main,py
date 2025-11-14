@@ -26,53 +26,52 @@ while salir:
         print(f"Nivel {nivel}")
         print()
         mostrar_matriz(matriz_a_jugar)
-
-        eleccion1 = input("Ingrese su eleccion: ")
-        eleccion2 = input("Ingrese su eleccion: ")
-        eleccion3 = input("Ingrese su eleccion: ")
-        eleccion4 = input("Ingrese su eleccion: ")
         
-        vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
-            
-        while comprobar_grupo(vector_eleccion , elementos) == False:
-            
-            puntuacion_perdida = perder_puntuacion(puntuacion,nivel,reinicios,vidas)
-            print(f'Puntuacion Perdida: {puntuacion_perdida}')
-            puntuacion-= puntuacion_perdida
-            print(f'Puntuacion Actual: {puntuacion}')
-            
-            vidas = perder_vida(vidas)
-            if vidas == 0:
-                reinicios, vidas = reinicio_nivel(reinicios,vidas)
-                if vidas == 3 and reinicios > 0:
-                    vector_auxiliar = []
-                    matriz_a_jugar = separar_grupos(elementos,vector_auxiliar)
-                    matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
+        vector_eleccion = tomar_valores(4)
+        bandera_validacion = True
 
-            if verificar_reinicio(reinicios) !=True:
+        while bandera_validacion == True:
+            if comprobar_grupo(vector_eleccion, elementos) == True:
+                bandera_validacion = False
 
-                estado_gamer_over = True
+            if bandera_validacion == True:
+                 
+                puntuacion_perdida = perder_puntuacion(puntuacion,nivel,reinicios,vidas)
+                print(f'Puntuacion Perdida: {puntuacion_perdida}')
+                puntuacion-= puntuacion_perdida
+                print(f'Puntuacion Actual: {puntuacion}')
                 
-                break
-            
-            print(f"Nivel {nivel}")
-            print()
-            mostrar_matriz(matriz_a_jugar)
+                vidas = perder_vida(vidas)
+                if vidas == 0:
+                    reinicios, vidas = reinicio_nivel(reinicios,vidas)
+                    if vidas == 3 and reinicios > 0:
+                        vector_auxiliar = []
+                        matriz_a_jugar = separar_grupos(elementos,vector_auxiliar)
+                        matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
 
-            eleccion1 = input("Ingrese su reeleccion: ")
-            eleccion2 = input("Ingrese su reeleccion: ")
-            eleccion3 = input("Ingrese su reeleccion: ")
-            eleccion4 = input("Ingrese su reeleccion: ")
-            
-            vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
+                if verificar_reinicio(reinicios) !=True:
+
+                    estado_gamer_over = True
+                    
+                    break
                 
+                print(f"Nivel {nivel}")
+                print()
+                mostrar_matriz(matriz_a_jugar)
+
+                vector_eleccion = tomar_valores(4)
+
+
         matriz_a_jugar = ordenar_grupo_en_linea(matriz_a_jugar, vector_eleccion, elementos)
         
         puntuacion_ganado = sumar_puntuacion(nivel,vidas,reinicios)
         print(f'Puntuacion Ganada: {puntuacion_ganado}')
         puntuacion += puntuacion_ganado
-        print(f'Puntuacion Actual: {puntuacion}')
-
+        
+    puntuacion_ganado = sumar_puntuacion(nivel,vidas,reinicios)
+    puntuacion += puntuacion_ganado
+    print(f'Puntuacion Actual: {puntuacion}')
+    
     if estado_gamer_over == True:
            print("\nHas Perdido.")
            break
@@ -81,6 +80,7 @@ while salir:
     if stage > 3 :
         stage = 1
         nivel += 1
+        vidas = 3
 
     
 

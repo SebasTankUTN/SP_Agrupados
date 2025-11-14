@@ -1,8 +1,7 @@
 import random
 
 
-#toma un dato, lo manda a fijarse si es un numero, recien cuando lo confirma lo parcea y 
-# lo manda a validar
+
 
 def get_int (mensaje:str,minimo:int,maximo:int):
     """Solicitar al usuario una cadena numerica, verificar si es valida, lo parcea a
@@ -325,6 +324,15 @@ def comprobar_elementos_en_lista(lista:list, elemento:any):
         bandera = True
 
     return bandera
+
+def tomar_valores(cantidad_valores):
+    
+    lista_valores = crear_vector(cantidad_valores,any)
+
+    for i in range(len(lista_valores)):
+        lista_valores[i] = input('Ingrese su eleccion: ')
+
+    return lista_valores     
 
 def perder_vida(vidas: int, mostrar = True):
     """descuenta el valor de vidas a -1 y muestrar la cantidad de vidas que tiene.
