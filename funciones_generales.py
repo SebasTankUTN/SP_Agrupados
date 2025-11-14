@@ -360,7 +360,7 @@ def reinicio_nivel(reinicio: int, vidas :int):
     else:
         print(f'Te quedan {reinicio} reinicios')
         vidas = 3
-        print(f"Nivel Restaurado, Vidas Restantes {vidas}")
+        print(f"Nivel Restaurado, Vidas Restantes 3/{vidas}")
         
 
     return reinicio, vidas
@@ -404,6 +404,169 @@ def mostrar_vidas(vidas:int):
         vidas (int): Valor a mostrar
     """
     if vidas >=1:
-        print(f"Perdiste una vida, te quedan {vidas} vidas")
+        print(f"Perdiste una vida, 3/{vidas} vidas")
     else:
-        print(f'Te quedaste sin vidas. Reinicio Nivel')
+        print(f'Te quedaste sin vidas.')
+
+def sumar_puntuacion(nivel: int, vidas: int, reinicios: int)-> int:
+    
+    suma_puntuacion = 0
+
+    match nivel:
+        case 1:
+            match reinicios:
+                case 3:
+                    if vidas == 3:
+                        suma_puntuacion = 30
+                    else:
+                        suma_puntuacion = 15
+                case 2:
+                    if vidas == 3:
+                        suma_puntuacion =22
+                    else:
+                        suma_puntuacion =8
+        case 2:
+            match reinicios:
+                case 3:
+                    if vidas == 3:
+                        suma_puntuacion = 50
+                    else:
+                        suma_puntuacion = 25
+                case 2,1:
+                    if vidas == 3:
+                        suma_puntuacion = 35
+                    else:
+                        suma_puntuacion = 15
+        case 3:
+            match reinicios:
+                case 3:
+                    if vidas == 3:
+                        suma_puntuacion = 75
+                    else:
+                        suma_puntuacion = 35
+                case 2,1:
+                    if vidas == 3:
+                        suma_puntuacion =50
+                    else:
+                        suma_puntuacion =21
+        case 4:
+            match reinicios:
+                case 3:
+                    if vidas == 3:
+                        suma_puntuacion = 100
+                    else:
+                        suma_puntuacion = 80
+                case 2,1:
+                    if vidas == 3:
+                        suma_puntuacion =85
+                    else:
+                        suma_puntuacion =40
+        case 5:
+            match reinicios:
+                case 3:
+                    if vidas == 3:
+                        suma_puntuacion = 150
+                    else:
+                        suma_puntuacion = 100
+                case 2,1:
+                    if vidas == 3:
+                        suma_puntuacion =120
+                    else:
+                        suma_puntuacion =75
+
+    return suma_puntuacion
+
+def perder_puntuacion(puntuacion: int, nivel: int, reinicios: int, vidas: int)-> int:
+    resta_puntuacion = 0
+
+    if puntuacion !=0:
+        match nivel:
+            case 1:
+                match reinicios:
+                    case 3:
+                        if vidas == 3:
+                            resta_puntuacion = 16
+                        else:
+                            resta_puntuacion = 20
+                    case 2:
+                        if vidas == 3:
+                            resta_puntuacion = 14
+                        else:
+                            resta_puntuacion = 18
+                    case 1:
+                        if vidas == 3:
+                            resta_puntuacion = 14
+                        else:
+                            resta_puntuacion = 18
+            case 2:
+                match reinicios:
+                    case 3:
+                        if vidas == 3:
+                            resta_puntuacion = 14
+                        else:
+                            resta_puntuacion = 18
+                    case 2:
+                        if vidas == 3:
+                            resta_puntuacion = 12
+                        else:
+                            resta_puntuacion = 16
+                    case 1:
+                        if vidas == 3:
+                            resta_puntuacion = 12
+                        else:
+                            resta_puntuacion = 16
+            case 3:
+                match reinicios:
+                    case 3:
+                        if vidas == 3:
+                            resta_puntuacion = 10
+                        else:
+                            resta_puntuacion = 14
+                    case 2:
+                        if vidas == 3:
+                            resta_puntuacion = 8
+                        else:
+                            resta_puntuacion = 12
+                    case 1:
+                        if vidas == 3:
+                            resta_puntuacion = 8
+                        else:
+                            resta_puntuacion = 12
+            case 4:
+                match reinicios:
+                    case 3:
+                        if vidas == 3:
+                            resta_puntuacion = 7
+                        else:
+                            resta_puntuacion = 11
+                    case 2:
+                        if vidas == 3:
+                            resta_puntuacion = 6
+                        else:
+                            resta_puntuacion = 10
+                    case 1:
+                        if vidas == 3:
+                            resta_puntuacion = 6
+                        else:
+                            resta_puntuacion = 10
+            case 5:
+                match reinicios:
+                    case 3:
+                        if vidas == 3:
+                            resta_puntuacion = 4
+                        else:
+                            resta_puntuacion = 8
+                    case 2:
+                        if vidas == 3:
+                            resta_puntuacion = 3
+                        else:
+                            resta_puntuacion = 5
+                    case 1:
+                        if vidas == 3:
+                            resta_puntuacion = 3
+                        else:
+                            resta_puntuacion = 5
+    else:
+        resta_puntuacion = 0
+
+    return resta_puntuacion
