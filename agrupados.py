@@ -182,11 +182,15 @@ def validacion_linea(elementos, nivel, matriz_a_jugar, reinicios, puntuacion, vi
                 puntuacion_perdida = perder_puntuacion(puntuacion,nivel,reinicios,vidas)
                 print(f'Puntuacion Perdida: {puntuacion_perdida}')
                 puntuacion-= puntuacion_perdida
+                puntuacion = estado_puntuacion(puntuacion)
                 print(f'Puntuacion Actual: {puntuacion}')
                 
                 vidas = perder_vida(vidas)
                 if vidas == 0:
-                    reinicios, vidas = reinicio_nivel(reinicios,vidas)
+
+                    lista_valores = reinicio_nivel(reinicios,vidas)
+                    reinicios, vidas = lista_valores.values()
+
                     if vidas == 3 and reinicios > 0:
                         vector_auxiliar = []
                         matriz_a_jugar = separar_grupos(elementos,vector_auxiliar)

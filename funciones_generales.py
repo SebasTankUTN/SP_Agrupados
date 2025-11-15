@@ -202,7 +202,6 @@ def mostrar_matriz (matriz:list):
             print(f"{matriz[i][j]}",end=' | ')
         print()
 
-#crea una matriz con un valor iniciado y columnas por la cantidad de filas
 def crear_matriz (ingreso:any,cantidad_columna:int,cantidad_filas:int):
     """Crear una matriz con un valor determinado y columnas por la cantidad de filas
     Args:
@@ -217,7 +216,6 @@ def crear_matriz (ingreso:any,cantidad_columna:int,cantidad_filas:int):
     
     return lista_matriz
 
-#recorre un vector, suma todos sus valores y devuelve el acumulado
 def acumulador_de_vector(vector:list):
     """Recorre un vector, Suma todos sus valores y lo guarda.
 
@@ -234,7 +232,6 @@ def acumulador_de_vector(vector:list):
     
     return acumulador
 
-#recorre un vector y guarda el mayor valor que encontro y su posicion, devuelve otro vector con esos datos
 
 def encontrar_mayor_en_vector(vector:list):
     """Recorre un vector y encuentra el valor mas alto
@@ -359,8 +356,9 @@ def reinicio_nivel(reinicio: int, vidas :int):
         vidas (int): Valor a actualizar
 
     Returns:
-        _int_: devuelve dos valores enteros cumpliendo con sus condiciones establecidas.
+        _list_: devuelve dos valores enteros en un diccionario cumpliendo con sus condiciones establecidas.
     """
+    lista_valores = {}
     reinicio -=1
     
     if reinicio == 0:
@@ -369,9 +367,13 @@ def reinicio_nivel(reinicio: int, vidas :int):
         print(f'Te quedan {reinicio} reinicios')
         vidas = 3
         print(f"Nivel Restaurado, Vidas Restantes 3/{vidas}")
-        
+    
+    lista_valores = {
+        "valor_reinicios": reinicio, 
+        "valor_vidas": vidas
+    }
 
-    return reinicio, vidas
+    return lista_valores
 
 def verificar_vidas(vida: int):
     """Verificar el estado del valor vidas.
@@ -416,164 +418,75 @@ def mostrar_vidas(vidas:int):
     else:
         print(f'Te quedaste sin vidas.')
 
+
+def puntuacion_nivel(reinicios: int, vidas: int, valor_1: int, valor_2: int, valor_3: int, valor_4: int)-> int:
+    
+    valor_puntuacion = 0
+
+    if reinicios > 2:
+        if vidas == 3:
+            valor_puntuacion = valor_1
+        else:
+            valor_puntuacion = valor_2
+    else:
+        if vidas == 3:
+            valor_puntuacion = valor_3
+        else:
+            valor_puntuacion = valor_4
+    
+    return valor_puntuacion
+            
+def estado_puntuacion(puntuacion: int):
+
+    if puntuacion < 0:
+        puntuacion = 0
+    
+    return puntuacion
+
+
+
 def sumar_puntuacion(nivel: int, vidas: int, reinicios: int)-> int:
     
     suma_puntuacion = 0
 
     match nivel:
         case 1:
-            match reinicios:
-                case 3:
-                    if vidas == 3:
-                        suma_puntuacion = 30
-                    else:
-                        suma_puntuacion = 15
-                case 2:
-                    if vidas == 3:
-                        suma_puntuacion =22
-                    else:
-                        suma_puntuacion =8
+            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 30, valor_2 = 15, valor_3 = 22, valor_4 = 8)
+
         case 2:
-            match reinicios:
-                case 3:
-                    if vidas == 3:
-                        suma_puntuacion = 50
-                    else:
-                        suma_puntuacion = 25
-                case 2,1:
-                    if vidas == 3:
-                        suma_puntuacion = 35
-                    else:
-                        suma_puntuacion = 15
+            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 50, valor_2 = 25, valor_3 = 35, valor_4 = 15)
+        
         case 3:
-            match reinicios:
-                case 3:
-                    if vidas == 3:
-                        suma_puntuacion = 75
-                    else:
-                        suma_puntuacion = 35
-                case 2,1:
-                    if vidas == 3:
-                        suma_puntuacion =50
-                    else:
-                        suma_puntuacion =21
+            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 75, valor_2 = 35, valor_3 = 50, valor_4 = 21)
+
         case 4:
-            match reinicios:
-                case 3:
-                    if vidas == 3:
-                        suma_puntuacion = 100
-                    else:
-                        suma_puntuacion = 80
-                case 2,1:
-                    if vidas == 3:
-                        suma_puntuacion =85
-                    else:
-                        suma_puntuacion =40
+            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 100, valor_2 = 80, valor_3 = 85, valor_4 = 80)
+        
         case 5:
-            match reinicios:
-                case 3:
-                    if vidas == 3:
-                        suma_puntuacion = 150
-                    else:
-                        suma_puntuacion = 100
-                case 2,1:
-                    if vidas == 3:
-                        suma_puntuacion =120
-                    else:
-                        suma_puntuacion =75
+            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 150, valor_2 = 100, valor_3 = 120, valor_4 = 75)
+
 
     return suma_puntuacion
 
 def perder_puntuacion(puntuacion: int, nivel: int, reinicios: int, vidas: int)-> int:
     resta_puntuacion = 0
 
-    if puntuacion !=0:
+    if puntuacion > 0:
         match nivel:
             case 1:
-                match reinicios:
-                    case 3:
-                        if vidas == 3:
-                            resta_puntuacion = 16
-                        else:
-                            resta_puntuacion = 20
-                    case 2:
-                        if vidas == 3:
-                            resta_puntuacion = 14
-                        else:
-                            resta_puntuacion = 18
-                    case 1:
-                        if vidas == 3:
-                            resta_puntuacion = 14
-                        else:
-                            resta_puntuacion = 18
+                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 16, valor_2 = 20, valor_3 = 14, valor_4 = 18)
+
             case 2:
-                match reinicios:
-                    case 3:
-                        if vidas == 3:
-                            resta_puntuacion = 14
-                        else:
-                            resta_puntuacion = 18
-                    case 2:
-                        if vidas == 3:
-                            resta_puntuacion = 12
-                        else:
-                            resta_puntuacion = 16
-                    case 1:
-                        if vidas == 3:
-                            resta_puntuacion = 12
-                        else:
-                            resta_puntuacion = 16
+                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 14, valor_2 = 18, valor_3 = 12, valor_4 = 16)
+
             case 3:
-                match reinicios:
-                    case 3:
-                        if vidas == 3:
-                            resta_puntuacion = 10
-                        else:
-                            resta_puntuacion = 14
-                    case 2:
-                        if vidas == 3:
-                            resta_puntuacion = 8
-                        else:
-                            resta_puntuacion = 12
-                    case 1:
-                        if vidas == 3:
-                            resta_puntuacion = 8
-                        else:
-                            resta_puntuacion = 12
+                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 10, valor_2 = 14, valor_3 = 8, valor_4 = 12)
+
             case 4:
-                match reinicios:
-                    case 3:
-                        if vidas == 3:
-                            resta_puntuacion = 7
-                        else:
-                            resta_puntuacion = 11
-                    case 2:
-                        if vidas == 3:
-                            resta_puntuacion = 6
-                        else:
-                            resta_puntuacion = 10
-                    case 1:
-                        if vidas == 3:
-                            resta_puntuacion = 6
-                        else:
-                            resta_puntuacion = 10
+                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 7, valor_2 = 11, valor_3 = 6, valor_4 = 10)
+
             case 5:
-                match reinicios:
-                    case 3:
-                        if vidas == 3:
-                            resta_puntuacion = 4
-                        else:
-                            resta_puntuacion = 8
-                    case 2:
-                        if vidas == 3:
-                            resta_puntuacion = 3
-                        else:
-                            resta_puntuacion = 5
-                    case 1:
-                        if vidas == 3:
-                            resta_puntuacion = 3
-                        else:
-                            resta_puntuacion = 5
+                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 4, valor_2 = 8, valor_3 = 3, valor_4 = 5)
     else:
         resta_puntuacion = 0
 
