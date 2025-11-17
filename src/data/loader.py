@@ -15,7 +15,7 @@ def crear_matriz (ingreso:any,cantidad_columna:int,cantidad_filas:int):
 
 
 
-def tomar_valores(cantidad_valores):
+def tomar_valores(cantidad_valores:int):
     
     lista_valores = crear_vector(cantidad_valores,any)
 
@@ -52,4 +52,3 @@ def init_game_values():
         "puntuacion" : 0
     }
     return game
-

@@ -169,3 +169,4 @@ def comprobar_stage(matriz_elementos:list, lista_jugados:list) -> bool:
             bandera = False
     
     return bandera
+
