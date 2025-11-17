@@ -1,56 +1,17 @@
-from elements import *
-from agrupados import *
-from funciones_generales import *
-import random
-from pruebitas import *
-elementos_jugados = []
-nivel = 1
-stage = 1
-vidas = 3
-reinicios = 3
+from data.elements import *
+import src.core.engine as engine
+import src.data.show as show
+import src.data.loader as datos
+
+game = datos.init_game_values()
 
 salir=True
 while salir:
 
-    matriz_a_jugar = separar_grupos(elementos, elementos_jugados)
-#    print()
-#    mostrar_matriz(matriz_a_jugar)
-    matriz_a_jugar = desordenar_grupos(matriz_a_jugar)
 
-    while comprobar_stage(matriz_a_jugar,elementos) != True:
-        print()
-        mostrar_matriz(matriz_a_jugar)
+    game = engine.jugar_agrupados(game, grupos_de_elementos)
 
-        eleccion1 = input("Ingrese su eleccion: ")
-        eleccion2 = input("Ingrese su eleccion: ")
-        eleccion3 = input("Ingrese su eleccion: ")
-        eleccion4 = input("Ingrese su eleccion: ")
-
-        vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
-
-        while comprobar_grupo(vector_eleccion , elementos) == False:
-            print()
-            mostrar_matriz(matriz_a_jugar)
-            eleccion1 = input("Ingrese su reeleccion: ")
-            eleccion2 = input("Ingrese su reeleccion: ")
-            eleccion3 = input("Ingrese su reeleccion: ")
-            eleccion4 = input("Ingrese su reeleccion: ")
-
-            vector_eleccion = [eleccion1,eleccion2,eleccion3,eleccion4]
-
-        matriz_a_jugar = ordenar_grupo_en_linea(matriz_a_jugar, vector_eleccion, elementos)
-    stage += 1
-    if stage > 3 :
-        stage = 1
-        nivel += 1
-        vidas = 3
-
-    
 
     condicional=input("salir: a, sino apreta enter: ")
     if condicional == "a":
         salir = False
-
-
-
-        
