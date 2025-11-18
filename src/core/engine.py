@@ -20,8 +20,10 @@ def jugar_agrupados(game:dict, grupos_de_elementos:list):
             print("Te haz quedado sin reinicios: GAME OVER")
             break
 
-    if verificar_vidas[game['reinicios']]:
+    if verificar_vidas(game['reinicios']):
         print('Has Ganado.')
+        print(f'puntuacion: {game['puntuacion']}')
+
 
 
 

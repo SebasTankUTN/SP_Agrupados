@@ -31,7 +31,6 @@ def separar_str(cadena:str, separacion: str)->list:
 
 def cargar_elementos(path)->dict:
     lista_diccionarios = []
-    print(path)
 
     with open(path, "r") as archivo:
 
