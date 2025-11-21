@@ -1,5 +1,6 @@
 import random
 from ..data.loader import *
+import src.data.loader as load
 
 def comprobar_elementos_en_lista(lista:list, elemento:any):
     """Comprueba si el elemento se encuentra en la lista
@@ -74,7 +75,7 @@ def desordenar_grupos(matriz:list) -> list:
     Returns:
         list: Una nueva matriz que contiene todos los elementos desordenados de manera aleatoria.
     """
-    nueva_matriz = crear_matriz("",4,4)
+    nueva_matriz = load.crear_matriz("",4,4)
 
     for i in range(len(matriz)):
 

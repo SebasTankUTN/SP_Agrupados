@@ -20,14 +20,13 @@ def encontrar_id(nombre_usuario, ubicacion, valor):
     for i in range(len(listado)):
         if listado[i]['usuario'] == nombre_usuario:
             id_usuario = listado[i][valor]
+        else:
+             id_usuario = None
     
     return id_usuario
 
 def ingreso_usuario(mensaje: dict):
     listado = []
-    
-    
-        
     
     nombre_usuario = load.get_string(mensaje['mensaje_usuario'], mensaje["mensaje_error"], load.validacion_string)
     while encontrar_elemento(nombre_usuario,'usuario', 'lista_usuarios') != False:

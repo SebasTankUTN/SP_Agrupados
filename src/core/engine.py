@@ -1,10 +1,20 @@
+import random
 from ..data.processor import * 
 import src.data.loader as load 
 from ..core.life_and_points import *
 import src.data.show as show
-import data.src.loader_usuarios as load_usu
-import data.procesamiento_partidas as datos
-import data.procesamiento_usuarios as up
+
+def revelar_categoria(matriz_jugar: list, grupo):
+
+    indice_fila = random.randint(0,len(matriz_jugar)-1)
+    indice_columna = random.randint(0,len(matriz_jugar[0])-1)
+
+    elemento = matriz_jugar[indice_fila][indice_columna]
+    for grupos in grupo:
+        if elemento in grupos["elementos"]:
+            nombre_grupo = grupos["titulo"]
+
+    print(f"Elemento: {elemento} - Categoria: {nombre_grupo}")
 
 
 def jugar_agrupados(game:dict, grupos_de_elementos:list):

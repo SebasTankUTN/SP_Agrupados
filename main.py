@@ -23,6 +23,7 @@ while salir:
                 print("NO HAY DATOS REGISTRADOS, Registre UN USUARIO.")
             else:
                 usuario = load.inicio_sesion(mensaje)
+                print(usuario)
                 engine.jugar_agrupados(game, grupos_de_elementos)
                 up.cargar_estadisticas(planilla_stast, usuario, game)
         case '2':
