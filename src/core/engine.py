@@ -1,8 +1,10 @@
-import random
 from ..data.processor import * 
-from ..data.loader import tomar_valores
+import src.data.loader as load 
 from ..core.life_and_points import *
 import src.data.show as show
+import data.src.loader_usuarios as load_usu
+import data.procesamiento_partidas as datos
+import data.procesamiento_usuarios as up
 
 
 def jugar_agrupados(game:dict, grupos_de_elementos:list):
@@ -60,17 +62,17 @@ def jugar_stage(game:dict):
 
     show.matriz(game["matriz_a_jugar"])
 
-    elecciones = tomar_valores(4)
+    elecciones = load.tomar_valores(4)
 
     if comprobar_grupo(elecciones,game["elementos_jugados"]):
         game["matriz_a_jugar"] = ordenar_grupo_en_linea(game["matriz_a_jugar"], elecciones, game["elementos_jugados"])
-        game["puntuacion"] = sumar_puntuacion(game["puntuacion"], game["nivel"], game["vidas"], game["reinicios"])
+        game["puntuacion"] = sumar_puntuacion(game)
         
         print(f"Muy bien!   Puntuacion: {game["puntuacion"]}")
 
     else:
         game["vidas"] = perder_vida(game["vidas"])
-        game["puntuacion"] = perder_puntuacion(game["puntuacion"], game["nivel"], game["reinicios"], game["vidas"])
+        game["puntuacion"] = perder_puntuacion(game)
         
         print(f"Error, el grupo no esta bien hecho!   Puntuacion: {game["puntuacion"]}")
 
@@ -87,8 +89,8 @@ def jugar_stage(game:dict):
 def ultimo_grupo(game:dict):
     
     show.matriz(game["matriz_a_jugar"])
-    elecciones = tomar_valores(4)
-    game["puntuacion"] = sumar_puntuacion(game["puntuacion"], game["nivel"], game["vidas"], game["reinicios"])
+    elecciones = load.tomar_valores(4)
+    game["puntuacion"] = sumar_puntuacion(game)
 
     print(f"Muy bien!   Puntuacion: {game["puntuacion"]}")
 
@@ -108,4 +110,19 @@ def generar_nuevo_stage(grupos_de_elementos:list, grupos_jugados:list, repetir_j
     return stage
 
 
+# grupos_de_elementos = datos.cargar_elementos('data/archivo_partidas.csv')
+# mensajes = load.init_mensaje_juego
 
+# def submenu_juego(game, mensaje, usuario ):
+    
+#     planilla_stast = load.init_dict_estadisticas()
+
+#     seguir = True
+#     while seguir:
+#         menu_juego = get_string(mensaje['msj_menu_juego'],mensaje['msj_submenu_error'],load_usu.validacion_string)
+#         match menu_juego:
+#             case '1':
+#                 engine.jugar_agrupados(game, grupos_de_elementos)
+#                 up.cargar_estadisticas(planilla_stast, usuario, game)
+#             case '2':
+#                 seguir = False

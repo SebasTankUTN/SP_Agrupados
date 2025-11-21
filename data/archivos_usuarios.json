@@ -1,0 +1,19 @@
+{
+    "lista_usuarios": [
+        {
+            "usuario": "Sebastian",
+            "password": "Corrado",
+            "id": 56805
+        }
+    ],
+    "lista_estadisticas": [
+        {
+            "id": 56805,
+            "nivel": 3,
+            "stage": 1,
+            "vidas": 0,
+            "reinicios": 0,
+            "puntuacion": 0
+        }
+    ]
+}

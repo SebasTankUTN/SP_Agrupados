@@ -79,80 +79,38 @@ def verificar_reinicio(reinicio: int):
 
 
 
-def puntuacion_nivel(reinicios: int, vidas: int, valor_1: int, valor_2: int, valor_3: int, valor_4: int)-> int:
+def calcular_puntuacion(game: dict, calculo = True):
     
-    valor_puntuacion = 0
+    puntuacion_base = 5
 
-    if reinicios > 2:
-        if vidas == 3:
-            valor_puntuacion = valor_1
-        else:
-            valor_puntuacion = valor_2
+    if calculo:
+        puntuacion = puntuacion_base * game['reinicios'] + game['vidas'] * game['nivel']# Suma
+
     else:
-        if vidas == 3:
-            valor_puntuacion = valor_3
-        else:
-            valor_puntuacion = valor_4
-    
-    return valor_puntuacion
-            
-def estado_puntuacion(puntuacion: int):
+        puntuacion = puntuacion_base * game['reinicios'] + game['vidas']  #Resta
 
-    if puntuacion < 0:
-        puntuacion = 0
-    
     return puntuacion
-
-
-
-def sumar_puntuacion(puntuacion: int, nivel: int, vidas: int, reinicios: int)-> int:
-    
-    suma_puntuacion = 0
-    puntuacion = estado_puntuacion(puntuacion)
-
-    match nivel:
-        case 1:
-            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 30, valor_2 = 15, valor_3 = 22, valor_4 = 8)
-
-        case 2:
-            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 50, valor_2 = 25, valor_3 = 35, valor_4 = 15)
         
-        case 3:
-            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 75, valor_2 = 35, valor_3 = 50, valor_4 = 21)
+def valida_puntuacion(game: dict):
 
-        case 4:
-            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 100, valor_2 = 80, valor_3 = 85, valor_4 = 80)
-        
-        case 5:
-            suma_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 150, valor_2 = 100, valor_3 = 120, valor_4 = 75)
-
-
-    return puntuacion + suma_puntuacion
-
-def perder_puntuacion(puntuacion: int, nivel: int, reinicios: int, vidas: int)-> int:
-    resta_puntuacion = 0
+    if game['puntuacion'] < 0:
+        game['puntuacion'] = 0
     
+    return game['puntuacion']
 
-    if puntuacion > 0:
-        match nivel:
-            case 1:
-                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 16, valor_2 = 20, valor_3 = 14, valor_4 = 18)
 
-            case 2:
-                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 14, valor_2 = 18, valor_3 = 12, valor_4 = 16)
 
-            case 3:
-                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 10, valor_2 = 14, valor_3 = 8, valor_4 = 12)
-
-            case 4:
-                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 7, valor_2 = 11, valor_3 = 6, valor_4 = 10)
-
-            case 5:
-                resta_puntuacion = puntuacion_nivel(reinicios, vidas,valor_1 = 4, valor_2 = 8, valor_3 = 3, valor_4 = 5)
-    else:
-        resta_puntuacion = 0
+def sumar_puntuacion(game: dict)-> int:
     
-    puntuacion-=resta_puntuacion
-    puntuacion = estado_puntuacion(puntuacion)
-    
-    return puntuacion
+    game['puntuacion'] += calcular_puntuacion(game)
+
+    return game['puntuacion']
+
+
+def perder_puntuacion(game: dict)-> int:
+
+    game['puntuacion'] -= calcular_puntuacion(game, calculo=False)
+
+    game['puntuacion'] = valida_puntuacion(game)
+
+    return game['puntuacion']
