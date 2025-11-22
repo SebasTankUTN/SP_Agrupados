@@ -26,13 +26,16 @@ def jugar_agrupados(game:dict, grupos_de_elementos:list):
 
             jugar_nivel(game, grupos_de_elementos)
             game["nivel"] += 1
+
             game["stage"] = 1
 
         else:
+            game["nivel"] -= 1
             print("Te haz quedado sin reinicios: GAME OVER")
             break
 
     if verificar_vidas(game['reinicios']):
+        
         print('Has Ganado.')
         print(f'puntuacion: {game['puntuacion']}')
 
@@ -56,13 +59,14 @@ def jugar_nivel(game:dict, grupos_de_elementos:list):
                 
                 i -= 1
                 game["reinicios"] -= 1
-                print(f"Te haz quedado sin vidas, se te consume un reinicio, reinicios restantes: {game["reinicios"]}")
+                print(f"Te haz quedado sin vidas, se te consume un reinicio, reinicios restantes: {game["reinicios"]+1}")
                 
                 game["vidas"] = 3
                 game["matriz_a_jugar"] = generar_nuevo_stage(grupos_de_elementos, game["elementos_jugados"],True)
                 game = jugar_stage(game)
 
         else:
+            
             break
 
     return game
@@ -83,7 +87,7 @@ def jugar_stage(game:dict):
     else:
         game["vidas"] = perder_vida(game["vidas"])
         game["puntuacion"] = perder_puntuacion(game)
-        
+        game["errores"] += 1
         print(f"Error, el grupo no esta bien hecho!   Puntuacion: {game["puntuacion"]}")
 
     if comprobar_stage(game["matriz_a_jugar"], game["elementos_jugados"]) != True:

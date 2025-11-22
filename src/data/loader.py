@@ -76,8 +76,9 @@ def init_game_values():
         "nivel" : 1,
         "stage" : 1,
         "vidas" : 3,
-        "reinicios" : 3,
-        "puntuacion" : 0
+        "reinicios" : 2,
+        "puntuacion" : 0,
+        "errores": 0
     }
     return game
 
@@ -99,7 +100,8 @@ def init_dict_estadisticas():
             "stage" : int(),
             "vidas" : int(),
             "reinicios" : int(),
-            "puntuacion" : int()
+            "puntuacion" : int(),
+            "errores": int()
     }
     return lista_estadisticas
 

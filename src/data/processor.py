@@ -76,13 +76,14 @@ def desordenar_grupos(matriz:list) -> list:
         list: Una nueva matriz que contiene todos los elementos desordenados de manera aleatoria.
     """
     nueva_matriz = load.crear_matriz("",4,4)
-
+    
     for i in range(len(matriz)):
 
         for j in range(len(matriz[i])):
             nueva_matriz[i][j] = matriz[j][i]
         
         nueva_matriz[i] = desordenar_vector(nueva_matriz[i])
+    
         
 
     return nueva_matriz

@@ -6,8 +6,7 @@ import data.src.processor_usuarios as load
 import data.procesamiento_usuarios as up
 import data.src.loader_usuarios as down
 
-game = datos.init_game_values()
-grupos_de_elementos = cargar_elementos('data/archivo_partidas.csv')
+
 mensaje = datos.init_mensaje_juego()
 plantilla_usuario = datos.init_dict_usuario()
 planilla_stast = datos.init_dict_estadisticas()
@@ -24,6 +23,10 @@ while salir:
             else:
                 usuario = load.inicio_sesion(mensaje)
                 print(usuario)
+
+                game = datos.init_game_values()
+                grupos_de_elementos = cargar_elementos('data/archivo_partidas.csv')
+
                 engine.jugar_agrupados(game, grupos_de_elementos)
                 up.cargar_estadisticas(planilla_stast, usuario, game)
         case '2':

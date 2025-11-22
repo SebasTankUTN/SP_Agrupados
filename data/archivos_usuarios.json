@@ -4,16 +4,54 @@
             "usuario": "Sebastian",
             "password": "Corrado",
             "id": 56805
+        },
+        {
+            "usuario": "Comotto",
+            "password": "pepegrillo",
+            "id": 27007
+        },
+        {
+            "usuario": "a",
+            "password": "a",
+            "id": 46029
         }
     ],
     "lista_estadisticas": [
         {
-            "id": 56805,
-            "nivel": 3,
+            "id": 46029,
+            "nivel": 2,
+            "stage": 1,
+            "vidas": 0,
+            "reinicios": 1,
+            "puntuacion": 0,
+            "errores": 9
+        },
+        {
+            "id": 46029,
+            "nivel": 1,
             "stage": 1,
             "vidas": 0,
             "reinicios": 0,
-            "puntuacion": 0
+            "puntuacion": 0,
+            "errores": 9
+        },
+        {
+            "id": 46029,
+            "nivel": 0,
+            "stage": 1,
+            "vidas": 0,
+            "reinicios": 0,
+            "puntuacion": 0,
+            "errores": 9
+        },
+        {
+            "id": 46029,
+            "nivel": 1,
+            "stage": 1,
+            "vidas": 0,
+            "reinicios": 0,
+            "puntuacion": 0,
+            "errores": 9
         }
     ]
 }

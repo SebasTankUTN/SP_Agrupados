@@ -82,5 +82,6 @@ def archivo_estadisticas(listado: dict, game: dict, lista: list):
     listado['vidas'] = game['vidas']
     listado['puntuacion'] = game['puntuacion']
     listado['reinicios'] = game['reinicios']
+    listado["errores"] = game["errores"]
 
     return listado
