@@ -3,7 +3,7 @@ import src.core.engine as engine
 import src.data.show as show
 import src.data.loader as datos
 import data.src.processor_usuarios as load
-import data.procesamiento_usuarios as up
+import data.engine_user as up
 import data.src.loader_usuarios as down
 
 
@@ -12,6 +12,7 @@ plantilla_usuario = datos.init_dict_usuario()
 planilla_stast = datos.init_dict_estadisticas()
 estado_json = down.validar_json('lista_usuarios')
 
+sesion_iniciada = False
 salir=True
 while salir:
 
@@ -20,22 +21,20 @@ while salir:
         case '1':
             if estado_json == False:
                 print("NO HAY DATOS REGISTRADOS, Registre UN USUARIO.")
-            else:
+            
+            if sesion_iniciada == False:
                 usuario = load.inicio_sesion(mensaje)
+                sesion_iniciada = True
+        case '2':
+            if sesion_iniciada == True:
                 print(usuario)
-
                 game = datos.init_game_values()
                 grupos_de_elementos = cargar_elementos('data/archivo_partidas.csv')
-
                 engine.jugar_agrupados(game, grupos_de_elementos)
                 up.cargar_estadisticas(planilla_stast, usuario, game)
-        case '2':
-            up.cargar_usuario(plantilla_usuario)
+            else:
+                print("Sesion no iniciada.")
         case '3':
-            break
-
-    # game = engine.jugar_agrupados(game, grupos_de_elementos)
-
-    condicional=input("salir: a, sino apreta enter: ")
-    if condicional == "a":
-        salir = False
+            up.cargar_usuario(mensaje)
+        case '4':
+            salir = False

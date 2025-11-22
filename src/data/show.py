@@ -35,3 +35,15 @@ def mostrar_vidas(vidas:int):
         print(f"Perdiste una vida, {vidas}/3 vidas")
     else:
         print(f'Te quedaste sin vidas.')
+
+def mostrar_estadisticas(lista: dict):
+
+    print("======Estadisticas GAME OVER======")
+    print(f"ID: {lista["id"]}")
+    print(f"Nivel: {lista["nivel"]}")
+    print(f"Stage: {lista["stage"]}")
+    print(f"Vidas: {lista["vidas"]}")
+    print(f"Reinicios: {lista["reinicios"]}")
+    print(f"Puntuacion: {lista["puntuacion"]}")
+    print(f"Errores: {lista["errores"]}")
+    print("==================================")

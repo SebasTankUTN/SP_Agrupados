@@ -28,7 +28,7 @@ def validar_numeros(cadena: str)->bool:
     encontro = False
     if len(cadena) == 1:
         numero = ord(cadena)
-        if numero >= 49 and numero <= 51:
+        if numero >= 49 and numero <= 52:
             encontro = True
 
     return encontro
@@ -114,7 +114,7 @@ def init_mensaje_juego():
         'registro_password': 'Ingrese una contraseña',
         'mensaje_error': 'El valor ingresado debe contener entre 1 - 15 characteres. ',
         'usuario_disponible': 'Usuario no disponible',
-        'msj_menu_opcion': '\n1-Iniciar Sesion\n2-Registrarse\n3-Salir\n\nEliga Una Opcion(1 - 3): ',
+        'msj_menu_opcion': '\n1-Iniciar Sesion\n2-Jugar\n3-Registrarse\n4-Salir\n\nEliga Una Opcion(1 - 4): ',
         'msj_menu_error': 'El valor ingresado debe ser entre 1 - 3',
         'msj_menu_juego': '\n1-Jugar Agrupados\n2-Salir\n\nEliga Una Opcion(1 - 2): ',
         'msj_submenu_error': 'El valor ingresado debe ser entre 1 - 2'
