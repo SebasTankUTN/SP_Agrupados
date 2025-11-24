@@ -18,7 +18,7 @@ def crear_matriz (ingreso:any,cantidad_columna:int,cantidad_filas:int):
     
     return lista_matriz
 
-def validar_numeros(cadena: str)->bool:
+def validar_numeros(cadena: str, maximo:int)->bool:
     """Se le ingresa una cadena y verificar con codigo ascii si pertenece desde un numero hasta otro numero.
 
     Args:
@@ -29,15 +29,15 @@ def validar_numeros(cadena: str)->bool:
     encontro = False
     if len(cadena) == 1:
         numero = ord(cadena)
-        if numero >= 49 and numero <= 52:
+        if numero >= 49 and numero <= maximo:
             encontro = True
 
     return encontro
 
-def get_string(mensaje:str, mensaje_error: str, funcion):
+def get_string(mensaje:str, mensaje_error: str, maximo: int, funcion):
 
     cadena = input(mensaje)
-    while funcion(cadena) != True:
+    while funcion(cadena, maximo) != True:
         print(mensaje_error)
         cadena = input(mensaje)
 
@@ -45,17 +45,17 @@ def get_string(mensaje:str, mensaje_error: str, funcion):
 
 def elegir_comodin(game):
 
-    respuesta = int(input("quiere usar un comodin?\n1.si\n2.no\n"))
-    if respuesta == 1:
-        respuesta = int(input("que comodin?\n1.revelar 1 elemento y su categoria\n2.revelar 2 elementos de la misma categoria\n3.revelar 2 elementos de distinta categoria\n"))
+    respuesta = get_string("Desea Utilizar un comodin?\n1.si\n2.no\n","El valor ingresado debe de esta entre 1 - 2", 50, validar_numeros)
+    if respuesta == '1':
+        respuesta = get_string("Comodines:\n1.revelar 1 elemento y su categoria\n2.revelar 2 elementos de la misma categoria\n3.revelar 2 elementos de distinta categoria\n","El valor ingresado debe de esta entre 1 -3",51,validar_numeros)
         match respuesta:
-            case 1:
+            case '1':
                 resultado = engine.comodin_revelar_categoria(game)
                 show.diccionario(resultado)
-            case 2:
+            case '2':
                 resultado = engine.comodin_revelar_dos_elementos(game)
                 show.vector(resultado)
-            case 3:
+            case '3':
                 resultado = engine.comodin_revelar_dos_elementos(game,False)
                 show.vector(resultado)
 
@@ -132,7 +132,7 @@ def init_mensaje_juego():
         'mensaje_error': 'El valor ingresado debe contener entre 1 - 15 characteres. ',
         'usuario_disponible': 'Usuario no disponible',
         'msj_menu_opcion': '\n1-Iniciar Sesion\n2-Jugar\n3-Registrarse\n4-Salir\n\nEliga Una Opcion(1 - 4): ',
-        'msj_menu_error': 'El valor ingresado debe ser entre 1 - 3',
+        'msj_menu_error': 'El valor ingresado debe ser entre 1 - 4',
         'msj_menu_juego': '\n1-Jugar Agrupados\n2-Salir\n\nEliga Una Opcion(1 - 2): ',
         'msj_submenu_error': 'El valor ingresado debe ser entre 1 - 2'
     }

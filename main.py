@@ -17,7 +17,7 @@ sesion_iniciada = False
 salir=True
 while salir:
 
-    Menu_Juego = datos.get_string(mensaje['msj_menu_opcion'],mensaje['msj_menu_error'],datos.validar_numeros)
+    Menu_Juego = datos.get_string(mensaje['msj_menu_opcion'], mensaje['msj_menu_error'], 52, datos.validar_numeros)
     match Menu_Juego:
         case '1':
             estado_json = down.validar_json('lista_usuarios')

@@ -16,7 +16,7 @@ def vector(vector:list,vector2:list=False, muestreo_doble:bool=False):
 
 def diccionario(diccionario:dict):
     for key, value in diccionario.items():
-        print(f"llave: {key}")
+        print(f"Clave: {key}")
         print(f"contenido: {value}")
 
 def matriz (matriz:list):

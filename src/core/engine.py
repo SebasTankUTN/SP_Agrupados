@@ -24,6 +24,7 @@ def comodin_revelar_categoria(game):
             nombre_grupo = "x"
 
     encontrado = {"elementos":elemento,"grupo":nombre_grupo}
+    
     return encontrado
 
 def comodin_revelar_dos_elementos(game,igual_categoria = True):
