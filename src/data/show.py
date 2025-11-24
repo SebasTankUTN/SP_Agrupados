@@ -14,6 +14,11 @@ def vector(vector:list,vector2:list=False, muestreo_doble:bool=False):
         for i in range(len(vector)):
             print(vector[i])
 
+def diccionario(diccionario:dict):
+    for key, value in diccionario.items():
+        print(f"llave: {key}")
+        print(f"contenido: {value}")
+
 def matriz (matriz:list):
     """recorrer la matriz y muestra cada valor de la misma.
 

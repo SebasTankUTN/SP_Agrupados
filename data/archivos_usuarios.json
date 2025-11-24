@@ -1,58 +1,10 @@
 {
     "lista_usuarios": [
         {
-            "usuario": "Sebastian",
-            "contrasena": "Corrado",
-            "id": 56805
-        },
-        {
-            "usuario": "Comotto",
-            "contrasena": "pepegrillo",
-            "id": 27007
-        },
-        {
             "usuario": "a",
             "contrasena": "a",
-            "id": 46029
-        },
-        {
-            "usuario": "Esteban",
-            "contrasena": "PEPE",
-            "id": 88511
-        },
-        {
-            "usuario": "s",
-            "contrasena": "a",
-            "id": 53180
+            "id": 47943
         }
     ],
-    "lista_estadisticas": [
-        {
-            "id": 46029,
-            "nivel": 2,
-            "stage": 1,
-            "vidas": 0,
-            "reinicios": 1,
-            "puntuacion": 0,
-            "errores": 9
-        },
-        {
-            "id": 88511,
-            "nivel": 1,
-            "stage": 1,
-            "vidas": 0,
-            "reinicios": 0,
-            "puntuacion": 0,
-            "errores": 9
-        },
-        {
-            "id": 88511,
-            "nivel": 1,
-            "stage": 1,
-            "vidas": 0,
-            "reinicios": 0,
-            "puntuacion": 0,
-            "errores": 9
-        }
-    ]
+    "lista_estadisticas": []
 }

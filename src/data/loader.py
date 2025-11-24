@@ -2,6 +2,7 @@ from ..data.processor import *
 from ..core.life_and_points import *
 from data.procesamiento_partidas import *
 import src.core.engine as engine
+import src.data.show as show
 
 def crear_matriz (ingreso:any,cantidad_columna:int,cantidad_filas:int):
     """Crear una matriz con un valor determinado y columnas por la cantidad de filas
@@ -41,6 +42,22 @@ def get_string(mensaje:str, mensaje_error: str, funcion):
         cadena = input(mensaje)
 
     return cadena
+
+def elegir_comodin(game):
+
+    respuesta = int(input("quiere usar un comodin?\n1.si\n2.no\n"))
+    if respuesta == 1:
+        respuesta = int(input("que comodin?\n1.revelar 1 elemento y su categoria\n2.revelar 2 elementos de la misma categoria\n3.revelar 2 elementos de distinta categoria\n"))
+        match respuesta:
+            case 1:
+                resultado = engine.comodin_revelar_categoria(game)
+                show.diccionario(resultado)
+            case 2:
+                resultado = engine.comodin_revelar_dos_elementos(game)
+                show.vector(resultado)
+            case 3:
+                resultado = engine.comodin_revelar_dos_elementos(game,False)
+                show.vector(resultado)
 
 
 def tomar_valores(cantidad_valores:int):

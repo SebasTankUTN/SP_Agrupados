@@ -20,6 +20,7 @@ def encontrar_id(nombre_usuario, ubicacion, valor):
     for i in range(len(lista_filtrada)):
         if lista_filtrada[i]['usuario'] == nombre_usuario:
             id_usuario = lista_filtrada[i][valor]
+            break
         else:
              id_usuario = None
     

@@ -12,6 +12,7 @@ plantilla_usuario = datos.init_dict_usuario()
 planilla_stast = datos.init_dict_estadisticas()
 estado_json = down.validar_json('lista_usuarios')
 
+
 sesion_iniciada = False
 salir=True
 while salir:
@@ -19,10 +20,11 @@ while salir:
     Menu_Juego = datos.get_string(mensaje['msj_menu_opcion'],mensaje['msj_menu_error'],datos.validar_numeros)
     match Menu_Juego:
         case '1':
+            estado_json = down.validar_json('lista_usuarios')
             if estado_json == False:
                 print("NO HAY DATOS REGISTRADOS, Registre UN USUARIO.")
             
-            if sesion_iniciada == False:
+            if sesion_iniciada == False and estado_json == True:
                 usuario = load.inicio_sesion(mensaje)
                 sesion_iniciada = True
         case '2':
