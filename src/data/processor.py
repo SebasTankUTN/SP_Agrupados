@@ -1,5 +1,6 @@
 import random
 from ..data.loader import *
+import src.core.engine as engine
 import src.data.loader as load
 
 def comprobar_elementos_en_lista(lista:list, elemento:any):
@@ -151,24 +152,38 @@ def ordenar_grupo_en_linea(matriz_elementos:list, vector_a_acomodar:list, lista_
                         
     return matriz_elementos
 
-def comprobar_stage(matriz_elementos:list, lista_jugados:list) -> bool:
-    """Comprueba si la matriz de grupos contiene algun grupo repetido.
-    en el caso de que haya alguno, se reemplazar por otro grupo no repetido.
+def comprobar_stage(juego,game,grupos_de_elementos) -> bool:
+    bandera = False
+    contador = 0
+    for objeto_matriz in juego["objetos_a_mostrar"]:
+        if "boton_matriz" in objeto_matriz["nombre"] and objeto_matriz["ordenado"] == True:
+            contador += 1
+            if contador == 16:
+                siguiente_stage(juego,game,grupos_de_elementos)
 
-    Args:
-        matriz_elementos (list): Lista de listas con los grupos que se estan utilizando en la partida
-        lista_jugados (list): Listas de listas que llevan un registro de los grupos jugados para evitar
-        repeticiones
+                bandera = True
 
-    Returns:
-        bool: Si es true, Ninguno grupo se repite
-              Si es False, los grupos se repiten.
-    """
-    bandera = True
-    
-    for i in range(len(matriz_elementos)):
-        if comprobar_grupo(matriz_elementos[i], lista_jugados)!=True:
-            bandera = False
-    
     return bandera
+
+
+def siguiente_stage(juego,game,grupos_de_elementos):
+    game["matriz_a_jugar"] = engine.generar_nuevo_stage(grupos_de_elementos, game["elementos_jugados"])
+    game["stage"] +=1
+    if game["stage"] > game["cantidad_stages"]:
+        game["nivel"] += 1
+        game["stage"] = 1
+                    
+        if game["nivel"] > game["cantidad_niveles"]:
+            game["nivel"] = game["cantidad_niveles"]
+            juego["pantalla_juego"] = False
+            juego["pantalla_ganar"] = True
+            #en esta linea y posicion carga las estadisticas al json
+                                
+                                
+
+
+    
+    
+    
+    
 

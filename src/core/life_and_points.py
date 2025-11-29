@@ -1,6 +1,6 @@
 from ..data.show import *
 
-def perder_vida(vidas: int, mostrar = True):
+def perder_vida(vidas: int, mostrar = False):
     """descuenta el valor de vidas a -1 y muestrar la cantidad de vidas que tiene.
 
     Args:

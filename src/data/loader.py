@@ -93,9 +93,15 @@ def init_game_values():
         "nivel" : 1,
         "stage" : 1,
         "vidas" : 3,
-        "reinicios" : 2,
+        "reinicios" : 3,
         "puntuacion" : 0,
-        "errores": 0
+        "errores": 0,
+        "elecciones": [],
+        "cantidad_stages":1,
+        "cantidad_niveles":1,
+        "comodin1":True,
+        "comodin2":True,
+        "comodin3":True
     }
     return game
 
